@@ -22,6 +22,22 @@ android {
         }
     }
 
+    flavorDimensions "environment"
+
+    productFlavors {
+        dev {
+            dimension "environment"
+            buildConfigField "String", "SERVER_URL", '"https://api.themoviedb.org/3/"'
+            resValue "string", "app_name", "Movies Dev"
+//            applicationIdSuffix ".dev"
+        }
+//        prod {
+//            dimension "environment"
+//            buildConfigField "String", "SERVER_URL", '"http://jsonplaceholder.typicode.com/"'
+//            resValue "string", "app_name", "BabylonTest"
+//        }
+    }
+
 }
 
 dependencies {

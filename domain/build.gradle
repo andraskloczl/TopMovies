@@ -1,5 +1,44 @@
-apply plugin: 'java-library'
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
+android {
+
+    defaultConfig {
+        compileSdkVersion rootProject.ext.compileSdkVersion
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    flavorDimensions "environment"
+
+    productFlavors {
+        dev {
+            dimension "environment"
+            buildConfigField "String", "SERVER_URL", '"https://api.themoviedb.org/3/"'
+            resValue "string", "app_name", "Movies Dev"
+//            applicationIdSuffix ".dev"
+        }
+//        prod {
+//            dimension "environment"
+//            buildConfigField "String", "SERVER_URL", '"http://jsonplaceholder.typicode.com/"'
+//            resValue "string", "app_name", "BabylonTest"
+//        }
+    }
+
+}
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$rootProject.ext.kotlinVersion"
@@ -9,6 +48,3 @@ dependencies {
 
     testImplementation "junit:junit:$rootProject.ext.junitVersion"
 }
-
-sourceCompatibility = "1.7"
-targetCompatibility = "1.7"
