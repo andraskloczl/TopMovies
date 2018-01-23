@@ -1,6 +1,7 @@
 package com.andraskloczl.movies
 
 import com.andraskloczl.movies.di.AppComponent
+import com.andraskloczl.movies.di.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
 

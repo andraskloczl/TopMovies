@@ -1,6 +1,8 @@
 package com.andraskloczl.movies.di
 
 import android.app.Application
+import com.andraskloczl.movies.data.modules.MovieModule
+import com.andraskloczl.movies.data.modules.NetworkModule
 import com.andraskloczl.movies.di.modules.*
 import dagger.BindsInstance
 import dagger.Component

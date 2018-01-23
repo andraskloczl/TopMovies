@@ -9,6 +9,10 @@ data class MovieAPIModel(
 	val title: String,
 	@SerializedName("vote_average")
 	val voteAverage: Float,
+	@SerializedName("popularity")
+	val popularity: Float,
 	@SerializedName("poster_path")
-	val posterPath: String
+	val posterPath: String,
+	@SerializedName("backdrop_path")
+	val backdropPath: String
 )

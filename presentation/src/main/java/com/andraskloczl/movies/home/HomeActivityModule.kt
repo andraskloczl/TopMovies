@@ -1,6 +1,9 @@
 package com.andraskloczl.movies.home
 
-import com.andraskloczl.movies.domain.usecases.GetTopRatedMovies
+import com.andraskloczl.movies.PopularityRankCalculator
+import com.andraskloczl.movies.domain.mapper.MovieMapper
+import com.andraskloczl.movies.domain.repository.TopRatedMovieRepository
+import com.andraskloczl.movies.domain.usecases.GetTopRatedMoviesImpl
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -17,9 +20,10 @@ abstract class HomeActivityModule {
 		@JvmStatic
 		@Provides
 		internal fun providePresenter(view: HomeContract.View,
-									  getTopRatedMovies: GetTopRatedMovies
+									  topRatedMovieRepository: TopRatedMovieRepository
 		): HomeContract.Presenter {
-			return HomePresenter(view, getTopRatedMovies)
+			return HomePresenter(view, GetTopRatedMoviesImpl(topRatedMovieRepository, MovieMapper(),
+				PopularityRankCalculator()))
 		}
 	}
 }

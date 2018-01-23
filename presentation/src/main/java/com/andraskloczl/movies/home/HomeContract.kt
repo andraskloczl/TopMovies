@@ -13,5 +13,6 @@ interface HomeContract {
 
 	interface Presenter : BasePresenter {
 		fun onMovieClicked(clickedMovie: DisplayedMovie)
+		fun onScrolledToBottom()
 	}
 }

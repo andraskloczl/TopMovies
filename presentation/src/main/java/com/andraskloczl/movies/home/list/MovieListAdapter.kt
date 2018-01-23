@@ -2,6 +2,8 @@ package com.andraskloczl.movies.home.list
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.StaggeredGridLayoutManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +11,7 @@ import com.andraskloczl.movies.R
 import com.andraskloczl.movies.domain.models.DisplayedMovie
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.list_item_movie.view.*
+
 
 class MovieListAdapter(
 	private val context: Context,
@@ -31,9 +34,22 @@ class MovieListAdapter(
 
 		val movie = movies.get(position)
 
+		val layoutParams = holder.itemView.getLayoutParams() as StaggeredGridLayoutManager.LayoutParams
+
+		val heightDimen = when (movie.popularityRank) {
+			in 8..10 -> R.dimen.movie_list_item_image_height_large
+			in 4..7 -> R.dimen.movie_list_item_image_height_medium
+			else -> R.dimen.movie_list_item_image_height_small
+		}
+
+		layoutParams.height = context.resources.getDimension(heightDimen).toInt()
+
 		Glide.with(context)
-			.load(movie.imagePath)
+			.load(movie.posterImageUrl)
 			.into(holder.movieImageView)
+
+
+		Log.d("adapter", "${movie.title}  span index - ${layoutParams.spanIndex}")
 
 		holder.movieTitleTextView.text = movie.title
 		holder.movieRatingTextView.text = movie.voteAverage.toString()

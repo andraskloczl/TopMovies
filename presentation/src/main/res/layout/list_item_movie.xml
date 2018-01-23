@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_margin="@dimen/xxsmall"
+    android:layout_height="@dimen/movie_list_item_image_height_small">
 
 
     <ImageView
@@ -17,18 +18,20 @@
         android:layout_height="wrap_content"
         android:background="@drawable/movie_title_background"
         android:orientation="vertical"
-        android:paddingBottom="15dp"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:paddingTop="60dp">
+        android:layout_alignParentBottom="true"
+        android:paddingBottom="@dimen/large"
+        android:paddingLeft="@dimen/large"
+        android:paddingRight="@dimen/large"
+        android:paddingTop="@dimen/movie_text_background_padding_top">
 
 
         <TextView
             android:id="@+id/movieTitleTextView"
-            style="@style/TextAppearance.AppCompat.Large.Inverse"
+            style="@style/TextAppearance.AppCompat.Medium.Inverse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
+            android:textColor="@color/textColorPrimaryInverse"
             tools:text="The Shawshank Redemption" />
 
         <TextView
@@ -36,8 +39,9 @@
             style="@style/Base.TextAppearance.AppCompat.Medium.Inverse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            tools:text="8.5"
             android:textColor="@color/textColorPrimaryInverse" />
 
     </LinearLayout>
 
-</FrameLayout>
+</RelativeLayout>

@@ -1,31 +1,31 @@
-package com.andraskloczl.movies.data.toprated.remote
+package com.andraskloczl.movies.data
 
-import com.andraskloczl.movies.data.Keys
-import com.andraskloczl.movies.data.MovieApi
-import com.andraskloczl.movies.data.RequestParamsProvider
+import android.content.Context
+import com.andraskloczl.movies.data.toprated.GetTopRatedMoviesResponse
 import com.andraskloczl.movies.data.toprated.TopRatedMovieDataSource
 import com.andraskloczl.movies.data.toprated.TopRatedMoviesResponseDataMapper
 import com.andraskloczl.movies.domain.models.DataPage
 import com.andraskloczl.movies.domain.models.GetTopRatedMoviesRequest
-import com.andraskloczl.movies.domain.models.DisplayedMovie
 import com.andraskloczl.movies.domain.models.Movie
+import com.google.gson.Gson
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class TopRatedMovieRemoteDataSource @Inject constructor(
-	val movieApi: MovieApi,
-	val paramsProvider: RequestParamsProvider,
+class MockTopRatedMovieRemoteDataSource @Inject constructor(
+	val context: Context,
+	val gson: Gson,
 	val dataMapper: TopRatedMoviesResponseDataMapper
-
 ) : TopRatedMovieDataSource {
 
 	override fun getTopRatedMovies(request: GetTopRatedMoviesRequest): Observable<DataPage<Movie>> =
-		paramsProvider.provideParams().flatMap { params ->
-			params.put(Keys.Remote.PAGE, request.page.toString())
-			movieApi.getTopRatedMovies(params)
+		Observable.fromCallable {
+			val inputStream = context.resources.openRawResource(R.raw.topratedmovies)
+			val jsonString = inputStream.bufferedReader().use { it.readText() }  // defaults to UTF-8
+			gson.fromJson(jsonString, GetTopRatedMoviesResponse::class.java)
 		}
-			.toObservable()
 			.map { dataMapper.transform(it) }
 			.subscribeOn(Schedulers.io())
+
+
 }

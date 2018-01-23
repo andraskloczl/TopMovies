@@ -7,6 +7,6 @@ import retrofit2.http.QueryMap
 
 interface MovieApi {
 
-	@GET("/movie/top_rated")
-	fun getTopRatedMovies(@QueryMap queryMap: Map<String, String>): Single<GetTopRatedMoviesResponse>
+	@GET("movie/top_rated")
+	fun getTopRatedMovies(@QueryMap(encoded = true) queryMap: Map<String, String>): Single<GetTopRatedMoviesResponse>
 }
