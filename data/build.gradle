@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
 
@@ -12,25 +13,44 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
 
     buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 
+    flavorDimensions "environment"
+
+    productFlavors {
+        prod {
+            dimension "environment"
+            buildConfigField "String", "SERVER_URL", '"https://api.themoviedb.org/3/"'
+            buildConfigField "String", "IMAGE_BASE_URL", '"http://image.tmdb.org/t/p/"'
+        }
+        mock {
+            dimension "environment"
+            buildConfigField "String", "SERVER_URL", '"shouldntuse"'
+            buildConfigField "String", "IMAGE_BASE_URL", '"http://image.tmdb.org/t/p/"'
+        }
+    }
+
 }
 
 dependencies {
-    compile project (':domain')
+    implementation project (':domain')
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$rootProject.ext.kotlinVersion"
 
-    implementation "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofitVersion"
+    //presentation module needs the retrofit dependency transitively
+    api "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofitVersion"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.ext.retrofitVersion"
 
@@ -41,7 +61,8 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion"
     kapt "com.google.dagger:dagger-android-processor:$rootProject.ext.daggerVersion"
 
-    implementation "com.google.code.gson:gson:$rootProject.ext.gsonVersion"
+    //presentation module needs the gson dependency transitively
+    api "com.google.code.gson:gson:$rootProject.ext.gsonVersion"
 
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxAndroidVersion"
     implementation "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxJavaVersion"
