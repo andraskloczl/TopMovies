@@ -48,9 +48,6 @@ class MovieListAdapter(
 			.load(movie.posterImageUrl)
 			.into(holder.movieImageView)
 
-
-		Log.d("adapter", "${movie.title}  span index - ${layoutParams.spanIndex}")
-
 		holder.movieTitleTextView.text = movie.title
 		holder.movieRatingTextView.text = movie.voteAverage.toString()
 		holder.itemView.tag = movie

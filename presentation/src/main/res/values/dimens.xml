@@ -20,5 +20,6 @@
     <dimen name="height_movie_detail_image">300dp</dimen>
 
     <dimen name="collapsing_toolbar_expanded_title_margin_bottom">-50dp</dimen>
+    <dimen name="loading_animation_size">100dp</dimen>
 
 </resources>
