@@ -44,6 +44,8 @@ class DetailPresenter(
 			.subscribe({ similarMovies ->
 				onSimilarMoviesLoaded(similarMovies)
 			}, { error ->
+				currentPage--
+				compositeDisposable.clear()
 				Log.e(TAG, "loadMovies", error)
 				view.displayError("")
 			}))
