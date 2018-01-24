@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Toast
 import com.andraskloczl.movies.AbstractActivity
 import com.andraskloczl.movies.R
+import com.andraskloczl.movies.detail.DetailActivity
 import com.andraskloczl.movies.domain.models.DisplayedMovie
 import com.andraskloczl.movies.home.list.MovieListAdapter
 import kotlinx.android.synthetic.main.activity_home.*
@@ -28,7 +29,6 @@ class HomeActivity : AbstractActivity(), HomeContract.View {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		initUI()
-		presenter.subscribe()
 	}
 
 	private fun initUI() {
@@ -54,11 +54,15 @@ class HomeActivity : AbstractActivity(), HomeContract.View {
 				}
 			}
 		})
-
 	}
 
-	override fun onDestroy() {
-		super.onDestroy()
+	override fun onResume() {
+		super.onResume()
+		presenter.subscribe()
+	}
+
+	override fun onPause() {
+		super.onPause()
 		presenter.unsubscribe()
 	}
 
@@ -69,10 +73,11 @@ class HomeActivity : AbstractActivity(), HomeContract.View {
 	}
 
 	override fun displayError(errorText: String) {
-		Toast.makeText(this, errorText, Toast.LENGTH_SHORT).show()
+		val errorMessage = if (errorText.isNotEmpty()) errorText else getString(R.string.default_error_message)
+		Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
 	}
 
 	override fun goToDetailsScreen(movieToShow: DisplayedMovie) {
-//		startActivity(DetailActivity.newIntent(this, postToShow))
+		startActivity(DetailActivity.newIntent(this, movieToShow))
 	}
 }

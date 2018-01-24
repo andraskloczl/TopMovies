@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TopMovies</string>
+    <string name="default_error_message">An error occurred</string>
 </resources>

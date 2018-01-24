@@ -1,9 +1,8 @@
-package com.andraskloczl.movies.data.toprated
+package com.andraskloczl.movies.data.models
 
-import com.andraskloczl.movies.data.MovieAPIModel
 import com.google.gson.annotations.SerializedName
 
-data class GetTopRatedMoviesResponse (
+data class PaginatedMoviesResponse(
 	@SerializedName("page")
 	val page: Int,
 	@SerializedName("total_results")

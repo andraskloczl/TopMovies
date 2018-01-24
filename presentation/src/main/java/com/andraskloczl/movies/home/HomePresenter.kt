@@ -3,7 +3,7 @@ package com.andraskloczl.movies.home
 import android.util.Log
 import com.andraskloczl.movies.domain.models.DisplayedMovie
 import com.andraskloczl.movies.domain.models.GetTopRatedMoviesRequest
-import com.andraskloczl.movies.domain.usecases.GetTopRatedMovies
+import com.andraskloczl.movies.domain.usecases.gettopratedmovies.GetTopRatedMovies
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 
@@ -35,7 +35,7 @@ class HomePresenter(
 				view.displayMovies(movieDataPage.pageItems)
 			}, { error ->
 				Log.e(TAG, "loadMovies", error)
-				view.displayError("error while loading")
+				view.displayError("")
 			}))
 	}
 

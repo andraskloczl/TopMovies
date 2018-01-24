@@ -1,21 +1,21 @@
-package com.andraskloczl.movies.domain.usecases
+package com.andraskloczl.movies.domain.usecases.getsimilarmovies
 
 import com.andraskloczl.movies.PopularityRankCalculator
 import com.andraskloczl.movies.domain.mapper.MovieMapper
 import com.andraskloczl.movies.domain.models.DataPage
 import com.andraskloczl.movies.domain.models.DisplayedMovie
-import com.andraskloczl.movies.domain.models.GetTopRatedMoviesRequest
-import com.andraskloczl.movies.domain.repository.TopRatedMovieRepository
+import com.andraskloczl.movies.domain.models.GetSimilarMoviesRequest
+import com.andraskloczl.movies.domain.repository.SimilarMoviesRepository
 import io.reactivex.Observable
 
-class GetTopRatedMoviesImpl(
-	val topRatedMovieRepository: TopRatedMovieRepository,
+class GetSimilarMoviesImpl(
+	val similarMoviesRepository: SimilarMoviesRepository,
 	val movieMapper: MovieMapper,
 	val popularityRankCalculator: PopularityRankCalculator
-) : GetTopRatedMovies {
+) : GetSimilarMovies {
 
-	override fun execute(data: GetTopRatedMoviesRequest): Observable<DataPage<DisplayedMovie>> =
-		topRatedMovieRepository.getTopRatedMovies(data)
+	override fun execute(data: GetSimilarMoviesRequest): Observable<DataPage<DisplayedMovie>> =
+		similarMoviesRepository.getSimilarMovies(data)
 			.flatMap { movieDataPage ->
 				popularityRankCalculator.init(movieDataPage.pageItems)
 				Observable.fromIterable(movieDataPage.pageItems)

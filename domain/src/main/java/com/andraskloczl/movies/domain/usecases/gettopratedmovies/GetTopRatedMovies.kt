@@ -1,4 +1,4 @@
-package com.andraskloczl.movies.domain.usecases
+package com.andraskloczl.movies.domain.usecases.gettopratedmovies
 
 import com.andraskloczl.movies.domain.models.DataPage
 import com.andraskloczl.movies.domain.models.DisplayedMovie
