@@ -102,5 +102,6 @@ class HomeActivity : AbstractActivity(), HomeContract.View {
 
 	override fun goToDetailsScreen(movieToShow: DisplayedMovie) {
 		startActivity(DetailActivity.newIntent(this, movieToShow))
+		overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left)
 	}
 }

@@ -4,8 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.view.ViewPager
-import android.util.Log
-import android.view.View
 import android.widget.Toast
 import com.andraskloczl.movies.AbstractActivity
 import com.andraskloczl.movies.R
@@ -23,6 +21,7 @@ class DetailActivity : AbstractActivity(), DetailContract.View {
 				putExtra(MOVIE_KEY, movie)
 			}
 	}
+
 	override val layoutResourceId: Int
 		get() = R.layout.activity_detail
 
@@ -50,7 +49,7 @@ class DetailActivity : AbstractActivity(), DetailContract.View {
 		viewPager.adapter = pagerAdapter
 		viewPager.offscreenPageLimit = 2
 
-		viewPager.addOnPageChangeListener(object: ViewPager.OnPageChangeListener {
+		viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
 			override fun onPageScrollStateChanged(state: Int) {
 			}
 
@@ -63,6 +62,11 @@ class DetailActivity : AbstractActivity(), DetailContract.View {
 			}
 
 		})
+	}
+
+	override fun onBackPressed() {
+		super.onBackPressed()
+		overridePendingTransition(R.anim.slide_in_from_left, R.anim.slide_out_to_right)
 	}
 
 	override fun onResume() {
@@ -81,7 +85,7 @@ class DetailActivity : AbstractActivity(), DetailContract.View {
 	}
 
 	override fun displayError(errorText: String) {
-		val errorMessage = if(errorText.isNotEmpty()) errorText else getString(R.string.default_error_message)
+		val errorMessage = if (errorText.isNotEmpty()) errorText else getString(R.string.default_error_message)
 		Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
 	}
 }
