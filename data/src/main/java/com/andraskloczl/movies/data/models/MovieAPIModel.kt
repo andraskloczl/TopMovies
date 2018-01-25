@@ -1,4 +1,4 @@
-package com.andraskloczl.movies.data
+package com.andraskloczl.movies.data.models
 
 import com.google.gson.annotations.SerializedName
 
@@ -7,6 +7,8 @@ data class MovieAPIModel(
 	val id: Int,
 	@SerializedName("title")
 	val title: String,
+	@SerializedName("overview")
+	val overview: String,
 	@SerializedName("vote_average")
 	val voteAverage: Float,
 	@SerializedName("popularity")

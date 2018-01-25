@@ -27,6 +27,11 @@ android {
     }
 }
 
+androidExtensions {
+    experimental = true
+}
+
+
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$rootProject.ext.kotlinVersion"
 

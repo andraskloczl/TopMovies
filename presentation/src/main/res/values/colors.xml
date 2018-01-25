@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#FFF5F5F5</color>
     <color name="colorPrimaryLight">#FFFFFF</color>
-    <color name="colorPrimaryDark">#757575</color>
+    <color name="colorPrimaryDark">#a9a9a9</color>
     <color name="colorAccent">#FF4040</color>
     <color name="colorBackground">#FFFFFF</color>
     <color name="colorForeground">#000000</color>
@@ -14,4 +14,6 @@
     <color name="colorSecondaryText">@color/colorPrimaryDark</color>
     <color name="colorIcons">@color/colorPrimaryDark</color>
     <color name="colorDivider">@color/colorPrimaryDark</color>
+
+    <color name="movie_title_background_endcolor">#bb000000</color>
 </resources>
