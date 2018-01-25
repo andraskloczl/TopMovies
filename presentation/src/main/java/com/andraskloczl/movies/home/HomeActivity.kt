@@ -18,6 +18,9 @@ import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.toolbar.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
+import android.widget.TextView
+
+
 
 class HomeActivity : AbstractActivity(), HomeContract.View {
 
@@ -49,7 +52,8 @@ class HomeActivity : AbstractActivity(), HomeContract.View {
 
 	private fun initUI() {
 		setSupportActionBar(toolbar)
-		supportActionBar!!.title = getString(R.string.app_name)
+		toolbarTitle.setText(toolbar.getTitle())
+		supportActionBar?.setDisplayShowTitleEnabled(false)
 
 		layoutManager = StaggeredGridLayoutManager(SPAN_COUNT, ORIENTATION_VERTICAL)
 		recyclerView.layoutManager = layoutManager
@@ -67,7 +71,6 @@ class HomeActivity : AbstractActivity(), HomeContract.View {
 			.doOnError { Log.e(TAG, "listenForScroll", it) }
 			.onErrorReturn { 0 }
 			.subscribe({
-				Log.d(TAG, "rawScrollPublishSubject")
 				val lastVisiblePositions = layoutManager.findLastVisibleItemPositions(IntArray(SPAN_COUNT))
 				val scrollState = ScrollState(lastVisiblePositions.lastOrNull() ?: 0, movies.size)
 				scrollStatePublishSubject.onNext(scrollState)

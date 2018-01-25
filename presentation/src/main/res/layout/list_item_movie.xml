@@ -2,8 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_margin="@dimen/xxsmall"
-    android:layout_height="@dimen/movie_list_item_image_height_small">
+    android:layout_height="@dimen/movie_list_item_image_height_small"
+    android:layout_margin="@dimen/xxsmall">
 
 
     <ImageView
@@ -16,31 +16,46 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:background="@drawable/movie_title_background"
         android:orientation="vertical"
-        android:layout_alignParentBottom="true"
-        android:paddingBottom="@dimen/large"
-        android:paddingLeft="@dimen/large"
-        android:paddingRight="@dimen/large"
+        android:paddingBottom="@dimen/medium"
+        android:paddingStart="@dimen/medium"
+        android:paddingEnd="@dimen/medium"
         android:paddingTop="@dimen/movie_text_background_padding_top">
 
 
         <TextView
             android:id="@+id/movieTitleTextView"
-            style="@style/TextAppearance.AppCompat.Medium.Inverse"
+            style="@style/TextStyle.Large.Inverse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textColor="@color/textColorPrimaryInverse"
             tools:text="The Shawshank Redemption" />
 
-        <TextView
-            android:id="@+id/movieRatingTextView"
-            style="@style/Base.TextAppearance.AppCompat.Medium.Inverse"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="8.5"
-            android:textColor="@color/textColorPrimaryInverse" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/movie_rating_star_size_small"
+                android:layout_height="@dimen/movie_rating_star_size_small"
+                android:src="@drawable/star" />
+
+            <TextView
+                android:id="@+id/movieRatingTextView"
+                style="@style/TextStyle.Medium.Inverse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/small"
+                android:textColor="@color/textColorPrimaryInverse"
+                android:textStyle="bold"
+                tools:text="8.5" />
+
+
+        </LinearLayout>
 
     </LinearLayout>
 

@@ -8,6 +8,7 @@ import android.widget.Toast
 import com.andraskloczl.movies.AbstractActivity
 import com.andraskloczl.movies.R
 import com.andraskloczl.movies.domain.models.DisplayedMovie
+import com.andraskloczl.movies.util.Extensions.onPageChangeListener
 import kotlinx.android.synthetic.main.activity_detail.*
 import javax.inject.Inject
 
@@ -15,6 +16,7 @@ class DetailActivity : AbstractActivity(), DetailContract.View {
 
 	companion object {
 		const val MOVIE_KEY = "movie"
+		const val VIEWPAGER_OFFSCREEN_PAGE_LIMIT = 2
 
 		fun newIntent(context: Context, movie: DisplayedMovie): Intent =
 			Intent(context, DetailActivity::class.java).apply {
@@ -47,21 +49,12 @@ class DetailActivity : AbstractActivity(), DetailContract.View {
 	private fun initUI() {
 		pagerAdapter = SimilarMoviesPagerAdapter(supportFragmentManager, movies)
 		viewPager.adapter = pagerAdapter
-		viewPager.offscreenPageLimit = 2
+		viewPager.offscreenPageLimit = VIEWPAGER_OFFSCREEN_PAGE_LIMIT
 
-		viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-			override fun onPageScrollStateChanged(state: Int) {
-			}
-
-			override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-			}
-
-			override fun onPageSelected(position: Int) {
-				val remainingItemsCount = movies.size - position - 1
-				presenter.onPageSelected(position, remainingItemsCount)
-			}
-
-		})
+		viewPager.onPageChangeListener { position ->
+			val remainingItemsCount = movies.size - position - 1
+			presenter.onPageSelected(position, remainingItemsCount)
+		}
 	}
 
 	override fun onBackPressed() {

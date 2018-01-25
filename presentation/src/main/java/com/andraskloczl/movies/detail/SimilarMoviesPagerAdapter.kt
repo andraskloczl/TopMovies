@@ -1,6 +1,5 @@
 package com.andraskloczl.movies.detail
 
-import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
@@ -13,10 +12,7 @@ class SimilarMoviesPagerAdapter(
 
 	override fun getItem(position: Int): Fragment {
 		val movie = movies.get(position)
-		val bundle = Bundle().apply { putParcelable(MovieDetailsFragment.MOVIE_KEY, movie) }
-		val fragment = MovieDetailsFragment()
-
-		return fragment.apply { arguments = bundle }
+		return MovieDetailsFragment.newInstance(movie)
 	}
 
 	override fun getCount() = movies.size
