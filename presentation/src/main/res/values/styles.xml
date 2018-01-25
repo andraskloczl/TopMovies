@@ -8,8 +8,13 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="Toolbar" parent="ThemeOverlay.AppCompat.Dark">
+    <style name="DarkToolbarText" parent="ThemeOverlay.AppCompat.Dark">
        <item name="android:textColor">@color/textColorPrimary</item>
+       <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="LightToolbarText" parent="ThemeOverlay.AppCompat.Light">
+       <item name="android:textColor">@color/textColorPrimaryInverse</item>
        <item name="android:textStyle">bold</item>
     </style>
 

@@ -14,4 +14,6 @@
     <color name="colorSecondaryText">@color/colorPrimaryDark</color>
     <color name="colorIcons">@color/colorPrimaryDark</color>
     <color name="colorDivider">@color/colorPrimaryDark</color>
+
+    <color name="movie_title_background_endcolor">#bb000000</color>
 </resources>

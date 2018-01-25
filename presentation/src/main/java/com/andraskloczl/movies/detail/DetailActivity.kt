@@ -48,6 +48,7 @@ class DetailActivity : AbstractActivity(), DetailContract.View {
 	private fun initUI() {
 		pagerAdapter = SimilarMoviesPagerAdapter(supportFragmentManager, movies)
 		viewPager.adapter = pagerAdapter
+		viewPager.offscreenPageLimit = 2
 
 		viewPager.addOnPageChangeListener(object: ViewPager.OnPageChangeListener {
 			override fun onPageScrollStateChanged(state: Int) {

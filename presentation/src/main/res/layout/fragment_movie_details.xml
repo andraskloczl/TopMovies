@@ -23,24 +23,35 @@
                 android:layout_height="match_parent"
                 android:fitsSystemWindows="true"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                app:collapsedTitleTextAppearance="@style/Toolbar"
+                app:collapsedTitleTextAppearance="@style/DarkToolbarText"
                 app:contentScrim="@color/colorBackground"
-                app:expandedTitleMarginBottom="@dimen/collapsing_toolbar_expanded_title_margin_bottom"
                 app:expandedTitleMarginStart="@dimen/large"
-                app:expandedTitleTextAppearance="@style/ThemeOverlay.AppCompat.Light"
+                app:expandedTitleTextAppearance="@style/LightToolbarText"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 app:title="@string/app_name">
 
-                <ImageView
-                    android:id="@+id/movieImageView"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fitsSystemWindows="true"
-                    android:scaleType="centerCrop" />
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/movieBackdropImageView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentTop="true"
+                        android:scaleType="centerCrop" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/movie_details_title_background_height"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/movie_title_background" />
+
+                </RelativeLayout>
 
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/toolbar"
-                    style="@style/Toolbar"
+                    style="@style/DarkToolbarText"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:layout_collapseMode="pin" />
@@ -58,24 +69,15 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium"
                 android:orientation="vertical">
 
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/movieTitleTextView"
-                        style="@style/TextAppearance.AppCompat.Large"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:padding="@dimen/large"
-                        android:textColor="@color/textColorPrimary"
-                        android:textStyle="bold"
-                        tools:text="Movie title" />
 
                     <TextView
                         android:id="@+id/movieRatingTextView"
@@ -87,17 +89,48 @@
                         android:textStyle="bold"
                         tools:text="8.5" />
 
+                    <ImageView
+                        android:layout_width="@dimen/movie_rating_star_size"
+                        android:layout_height="@dimen/movie_rating_star_size"
+                        android:src="@drawable/star" />
+
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/movieOverViewTextView"
-                    style="@style/TextAppearance.AppCompat.Medium"
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/large"
-                    android:textColor="@color/textColorPrimary"
-                    tools:text="When straight arrow FBI agent Roy Clayton heads up the investigation into a dangerous international conspiracy, all clues seem to lead back to former U.S. Special Operations officer, Samir Horn." />
+                    android:orientation="horizontal">
 
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/movie_detail_poster_image_height"
+                        android:layout_weight="2"
+                        android:padding="@dimen/small">
+
+
+                        <ImageView
+                            android:id="@+id/moviePosterImageView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerInParent="true"
+                            android:scaleType="fitCenter" />
+
+                    </RelativeLayout>
+
+
+                    <TextView
+                        android:id="@+id/movieOverViewTextView"
+                        style="@style/TextAppearance.AppCompat.Medium"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:padding="@dimen/large"
+                        android:textColor="@color/textColorPrimary"
+                        tools:text="When straight arrow FBI agent Roy Clayton heads up the investigation into a dangerous international conspiracy, all clues seem to lead back to former U.S. Special Operations officer, Samir Horn." />
+
+
+                </LinearLayout>
             </LinearLayout>
 
         </android.support.v4.widget.NestedScrollView>

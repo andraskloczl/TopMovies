@@ -7,6 +7,7 @@ import com.andraskloczl.movies.domain.models.GetSimilarMoviesRequest
 import com.andraskloczl.movies.domain.usecases.getsimilarmovies.GetSimilarMovies
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import java.util.concurrent.TimeUnit
 
 class DetailPresenter(
 	val view: DetailContract.View,
@@ -31,8 +32,10 @@ class DetailPresenter(
 
 	override fun subscribe() {
 		if (::movie.isInitialized.not()) error("Movie has not been passed")
-		view.displaySimilarMovies(listOf(movie))
-		loadSimilarMovies()
+		if (currentPage == 0) {
+			view.displaySimilarMovies(listOf(movie))
+			loadSimilarMovies()
+		}
 	}
 
 	private fun loadSimilarMovies() {
@@ -66,7 +69,7 @@ class DetailPresenter(
 	}
 
 	override fun onPageSelected(position: Int, remainingItemsCount: Int) {
-		if(remainingItemsCount <= REMAINING_ITEMS_COUNT_THRESHOLD_BEFORE_LOAD) {
+		if (remainingItemsCount <= REMAINING_ITEMS_COUNT_THRESHOLD_BEFORE_LOAD) {
 			loadSimilarMovies()
 		}
 	}

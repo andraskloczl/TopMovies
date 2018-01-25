@@ -9,7 +9,7 @@ import butterknife.ButterKnife
 import com.andraskloczl.movies.R
 import com.andraskloczl.movies.domain.models.DisplayedMovie
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.fragment_movie.*
+import kotlinx.android.synthetic.main.fragment_movie_details.*
 
 class MovieDetailsFragment : Fragment() {
 
@@ -20,7 +20,7 @@ class MovieDetailsFragment : Fragment() {
 	lateinit var movie: DisplayedMovie
 
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-		val view = inflater.inflate(R.layout.fragment_movie, container, false) as ViewGroup
+		val view = inflater.inflate(R.layout.fragment_movie_details, container, false) as ViewGroup
 		ButterKnife.bind(this, view)
 		return view
 	}
@@ -37,13 +37,16 @@ class MovieDetailsFragment : Fragment() {
 
 		collapsingToolbar.title = movie.title
 
-		movieTitleTextView.text = movie.title
-		movieRatingTextView.text = movie.voteAverage.toString()
+		movieRatingTextView.text = getString(R.string.movie_rating, movie.voteAverage)
 		movieOverViewTextView.text = movie.overview
 
 		Glide.with(activity!!)
 			.load(movie.backdropImageUrl)
-			.into(movieImageView)
+			.into(movieBackdropImageView)
+
+		Glide.with(activity!!)
+			.load(movie.posterImageUrl)
+			.into(moviePosterImageView)
 	}
 
 }

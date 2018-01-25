@@ -17,9 +17,14 @@
     <dimen name="movie_list_item_image_height_small">300dp</dimen>
     <dimen name="movie_list_item_image_height_medium">375dp</dimen>
     <dimen name="movie_list_item_image_height_large">450dp</dimen>
+
     <dimen name="height_movie_detail_image">300dp</dimen>
 
     <dimen name="collapsing_toolbar_expanded_title_margin_bottom">-50dp</dimen>
     <dimen name="loading_animation_size">100dp</dimen>
+
+    <dimen name="movie_details_title_background_height">120dp</dimen>
+    <dimen name="movie_detail_poster_image_height">250dp</dimen>
+    <dimen name="movie_rating_star_size">30dp</dimen>
 
 </resources>

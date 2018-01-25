@@ -1,7 +1,6 @@
 package com.andraskloczl.movies.home
 
 import android.os.Bundle
-import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.util.Log
 import android.view.View
@@ -26,6 +25,7 @@ class HomeActivity : AbstractActivity(), HomeContract.View {
 		get() = R.layout.activity_home
 
 	companion object {
+		val TAG = HomeActivity::class.java.simpleName
 		const val SPAN_COUNT = 2
 		const val ORIENTATION_VERTICAL = 1
 		const val SCROLL_STATE_SAMPLE_INTERVAL_MILLIS = 500L
@@ -64,8 +64,10 @@ class HomeActivity : AbstractActivity(), HomeContract.View {
 	override fun listenForScroll(): Observable<ScrollState> {
 		rawScrollPublishSubject
 			.sample(SCROLL_STATE_SAMPLE_INTERVAL_MILLIS, TimeUnit.MILLISECONDS)
+			.doOnError { Log.e(TAG, "listenForScroll", it) }
+			.onErrorReturn { 0 }
 			.subscribe({
-				Log.d("HomeActivity", "rawScrollPublishSubject")
+				Log.d(TAG, "rawScrollPublishSubject")
 				val lastVisiblePositions = layoutManager.findLastVisibleItemPositions(IntArray(SPAN_COUNT))
 				val scrollState = ScrollState(lastVisiblePositions.lastOrNull() ?: 0, movies.size)
 				scrollStatePublishSubject.onNext(scrollState)
