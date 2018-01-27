@@ -1,7 +1,6 @@
 package com.andraskloczl.movies.detail
 
 import com.andraskloczl.movies.BasePresenter
-import com.andraskloczl.movies.domain.models.DataPage
 import com.andraskloczl.movies.domain.models.DisplayedMovie
 
 interface DetailContract {

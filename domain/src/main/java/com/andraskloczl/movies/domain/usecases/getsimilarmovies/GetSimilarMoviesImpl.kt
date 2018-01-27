@@ -1,11 +1,11 @@
 package com.andraskloczl.movies.domain.usecases.getsimilarmovies
 
-import com.andraskloczl.movies.PopularityRankCalculator
 import com.andraskloczl.movies.domain.mapper.MovieMapper
 import com.andraskloczl.movies.domain.models.DataPage
 import com.andraskloczl.movies.domain.models.DisplayedMovie
 import com.andraskloczl.movies.domain.models.GetSimilarMoviesRequest
 import com.andraskloczl.movies.domain.repository.SimilarMoviesRepository
+import com.andraskloczl.movies.domain.utils.PopularityRankCalculator
 import io.reactivex.Observable
 
 class GetSimilarMoviesImpl(

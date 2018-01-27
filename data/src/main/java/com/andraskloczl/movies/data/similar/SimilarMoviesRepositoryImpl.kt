@@ -11,8 +11,7 @@ import javax.inject.Singleton
 @Singleton
 class SimilarMoviesRepositoryImpl
 @Inject constructor(
-	private val remoteDataSource: SimilarMoviesDataSource,
-	private val localDataSource: SimilarMoviesDataSource
+	private val remoteDataSource: SimilarMoviesDataSource
 ) : SimilarMoviesRepository {
 
 	override fun getSimilarMovies(request: GetSimilarMoviesRequest): Observable<DataPage<Movie>> {

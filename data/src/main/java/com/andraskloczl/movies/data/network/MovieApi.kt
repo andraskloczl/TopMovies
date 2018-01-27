@@ -1,4 +1,4 @@
-package com.andraskloczl.movies.data
+package com.andraskloczl.movies.data.network
 
 import com.andraskloczl.movies.data.models.PaginatedMoviesResponse
 import io.reactivex.Single

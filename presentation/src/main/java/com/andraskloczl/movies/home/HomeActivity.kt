@@ -18,8 +18,6 @@ import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.toolbar.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
-import android.widget.TextView
-
 
 
 class HomeActivity : AbstractActivity(), HomeContract.View {
@@ -32,6 +30,7 @@ class HomeActivity : AbstractActivity(), HomeContract.View {
 		const val SPAN_COUNT = 2
 		const val ORIENTATION_VERTICAL = 1
 		const val SCROLL_STATE_SAMPLE_INTERVAL_MILLIS = 500L
+		const val PLACEHOLDER_VALUE = 0
 	}
 
 	@Inject
@@ -62,14 +61,14 @@ class HomeActivity : AbstractActivity(), HomeContract.View {
 			presenter.onMovieClicked(clickedPost)
 		})
 		recyclerView.adapter = listAdapter
-		recyclerView.onScrollListener { rawScrollPublishSubject.onNext(0) }
+		recyclerView.onScrollListener { rawScrollPublishSubject.onNext(PLACEHOLDER_VALUE) }
 	}
 
 	override fun listenForScroll(): Observable<ScrollState> {
 		rawScrollPublishSubject
 			.sample(SCROLL_STATE_SAMPLE_INTERVAL_MILLIS, TimeUnit.MILLISECONDS)
 			.doOnError { Log.e(TAG, "listenForScroll", it) }
-			.onErrorReturn { 0 }
+			.onErrorReturn { PLACEHOLDER_VALUE }
 			.subscribe({
 				val lastVisiblePositions = layoutManager.findLastVisibleItemPositions(IntArray(SPAN_COUNT))
 				val scrollState = ScrollState(lastVisiblePositions.lastOrNull() ?: 0, movies.size)

@@ -1,11 +1,11 @@
 package com.andraskloczl.movies.domain.usecases.gettopratedmovies
 
-import com.andraskloczl.movies.PopularityRankCalculator
 import com.andraskloczl.movies.domain.mapper.MovieMapper
 import com.andraskloczl.movies.domain.models.DataPage
 import com.andraskloczl.movies.domain.models.DisplayedMovie
 import com.andraskloczl.movies.domain.models.GetTopRatedMoviesRequest
 import com.andraskloczl.movies.domain.repository.TopRatedMovieRepository
+import com.andraskloczl.movies.domain.utils.PopularityRankCalculator
 import io.reactivex.Observable
 
 class GetTopRatedMoviesImpl(

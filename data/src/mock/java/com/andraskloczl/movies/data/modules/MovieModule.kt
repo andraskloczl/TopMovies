@@ -19,6 +19,6 @@ class MovieModule {
 
 	@Provides
 	@Singleton
-	fun provideTopRatedMovieRepository(topRatedMovieRepositoryImpl: TopRatedMovieRepositoryImpl) : TopRatedMovieRepository = topRatedMovieRepositoryImpl
+	fun provideTopRatedMovieRepository(topRatedMovieRepositoryImpl: TopRatedMovieRepositoryImpl): TopRatedMovieRepository = topRatedMovieRepositoryImpl
 
 }
