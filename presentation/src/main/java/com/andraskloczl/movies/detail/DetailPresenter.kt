@@ -10,7 +10,7 @@ import io.reactivex.disposables.CompositeDisposable
 
 class DetailPresenter(
 	val view: DetailContract.View,
-	val getSimilarMovies: GetSimilarMovies
+	private val getSimilarMovies: GetSimilarMovies
 ) : DetailContract.Presenter {
 
 	companion object {
@@ -18,12 +18,12 @@ class DetailPresenter(
 		const val REMAINING_ITEMS_COUNT_THRESHOLD_BEFORE_LOAD = 5
 	}
 
-	lateinit var movie: DisplayedMovie
+	private lateinit var movie: DisplayedMovie
 
 	private var currentPage = 0
 	private var hasItemsToLoad = true
 
-	val compositeDisposable = CompositeDisposable()
+	private val compositeDisposable = CompositeDisposable()
 
 	override fun setSelectedMovie(movie: DisplayedMovie) {
 		this.movie = movie

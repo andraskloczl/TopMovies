@@ -16,9 +16,10 @@ import org.mockito.MockitoAnnotations
 class MovieMapperTest : BaseUnitTest() {
 
 	@Mock
+	private
 	lateinit var popularityRankCalculator: PopularityRankCalculator
 
-	val movieMapper = MovieMapper()
+	private val movieMapper = MovieMapper()
 
 	@Before
 	fun setup() {

@@ -10,7 +10,7 @@ import io.reactivex.disposables.CompositeDisposable
 
 class HomePresenter(
 	val view: HomeContract.View,
-	val getTopRatedMovies: GetTopRatedMovies
+	private val getTopRatedMovies: GetTopRatedMovies
 ) : HomeContract.Presenter {
 
 	companion object {
@@ -18,8 +18,8 @@ class HomePresenter(
 		const val REMAINING_ITEMS_COUNT_THRESHOLD_BEFORE_LOAD = 10
 	}
 
-	val loadMovieDisposable = CompositeDisposable()
-	val scrollDisposable = CompositeDisposable()
+	private val loadMovieDisposable = CompositeDisposable()
+	private val scrollDisposable = CompositeDisposable()
 
 	private var currentPage = 0
 	private var hasItemsToLoad = true

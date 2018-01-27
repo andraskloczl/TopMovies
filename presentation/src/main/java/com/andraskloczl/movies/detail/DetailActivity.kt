@@ -27,7 +27,7 @@ class DetailActivity : AbstractActivity(), DetailContract.View {
 		get() = R.layout.activity_detail
 
 
-	lateinit var pagerAdapter: SimilarMoviesPagerAdapter
+	private lateinit var pagerAdapter: SimilarMoviesPagerAdapter
 
 	val movies = ArrayList<DisplayedMovie>()
 

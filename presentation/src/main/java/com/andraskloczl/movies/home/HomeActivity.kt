@@ -36,11 +36,11 @@ class HomeActivity : AbstractActivity(), HomeContract.View {
 	@Inject
 	lateinit var presenter: HomeContract.Presenter
 
-	lateinit var listAdapter: MovieListAdapter
+	private lateinit var listAdapter: MovieListAdapter
 
-	lateinit var layoutManager: StaggeredGridLayoutManager
-	val scrollStatePublishSubject = PublishSubject.create<ScrollState>()
-	val rawScrollPublishSubject = PublishSubject.create<Int>()
+	private lateinit var layoutManager: StaggeredGridLayoutManager
+	private val scrollStatePublishSubject = PublishSubject.create<ScrollState>()
+	private val rawScrollPublishSubject = PublishSubject.create<Int>()
 
 	val movies = ArrayList<DisplayedMovie>()
 

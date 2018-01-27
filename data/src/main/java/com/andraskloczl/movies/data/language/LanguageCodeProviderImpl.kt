@@ -6,7 +6,7 @@ import java.util.*
 import javax.inject.Inject
 
 class LanguageCodeProviderImpl @Inject constructor(
-	val context: Context
+	private val context: Context
 ) : LanguageCodeProvider {
 
 	override fun provideLanguage(): String = getLocale().language

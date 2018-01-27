@@ -19,13 +19,14 @@ import org.mockito.Spy
 class GetSimilarMoviesImplTest : BaseUnitTest() {
 
 	@Mock
+	private
 	lateinit var mockSimilarMoviesRepository: SimilarMoviesRepository
 	@Spy
-	var movieMapper = MovieMapper()
+	private var movieMapper = MovieMapper()
 	@Spy
-	var popularityRankCalculator = PopularityRankCalculator()
+	private var popularityRankCalculator = PopularityRankCalculator()
 
-	lateinit var getSimilarMoviesImpl: GetSimilarMoviesImpl
+	private lateinit var getSimilarMoviesImpl: GetSimilarMoviesImpl
 
 	@Before
 	fun setup() {

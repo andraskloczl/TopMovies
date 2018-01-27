@@ -14,5 +14,5 @@ open class BaseUnitTest {
 		return uninitialized<T>()
 	}
 
-	protected fun <T> uninitialized(): T = null as T
+	private fun <T> uninitialized(): T = null as T
 }
