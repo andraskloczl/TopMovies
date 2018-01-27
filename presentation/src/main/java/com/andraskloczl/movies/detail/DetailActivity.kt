@@ -3,13 +3,11 @@ package com.andraskloczl.movies.detail
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.view.ViewPager
-import android.util.Log
-import android.view.View
 import android.widget.Toast
 import com.andraskloczl.movies.AbstractActivity
 import com.andraskloczl.movies.R
 import com.andraskloczl.movies.domain.models.DisplayedMovie
+import com.andraskloczl.movies.util.Extensions.onPageChangeListener
 import kotlinx.android.synthetic.main.activity_detail.*
 import javax.inject.Inject
 
@@ -17,12 +15,14 @@ class DetailActivity : AbstractActivity(), DetailContract.View {
 
 	companion object {
 		const val MOVIE_KEY = "movie"
+		const val VIEWPAGER_OFFSCREEN_PAGE_LIMIT = 2
 
 		fun newIntent(context: Context, movie: DisplayedMovie): Intent =
 			Intent(context, DetailActivity::class.java).apply {
 				putExtra(MOVIE_KEY, movie)
 			}
 	}
+
 	override val layoutResourceId: Int
 		get() = R.layout.activity_detail
 
@@ -48,21 +48,17 @@ class DetailActivity : AbstractActivity(), DetailContract.View {
 	private fun initUI() {
 		pagerAdapter = SimilarMoviesPagerAdapter(supportFragmentManager, movies)
 		viewPager.adapter = pagerAdapter
-		viewPager.offscreenPageLimit = 2
+		viewPager.offscreenPageLimit = VIEWPAGER_OFFSCREEN_PAGE_LIMIT
 
-		viewPager.addOnPageChangeListener(object: ViewPager.OnPageChangeListener {
-			override fun onPageScrollStateChanged(state: Int) {
-			}
+		viewPager.onPageChangeListener { position ->
+			val remainingItemsCount = movies.size - position - 1
+			presenter.onPageSelected(position, remainingItemsCount)
+		}
+	}
 
-			override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-			}
-
-			override fun onPageSelected(position: Int) {
-				val remainingItemsCount = movies.size - position - 1
-				presenter.onPageSelected(position, remainingItemsCount)
-			}
-
-		})
+	override fun onBackPressed() {
+		super.onBackPressed()
+		overridePendingTransition(R.anim.slide_in_from_left, R.anim.slide_out_to_right)
 	}
 
 	override fun onResume() {
@@ -81,7 +77,7 @@ class DetailActivity : AbstractActivity(), DetailContract.View {
 	}
 
 	override fun displayError(errorText: String) {
-		val errorMessage = if(errorText.isNotEmpty()) errorText else getString(R.string.default_error_message)
+		val errorMessage = if (errorText.isNotEmpty()) errorText else getString(R.string.default_error_message)
 		Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
 	}
 }

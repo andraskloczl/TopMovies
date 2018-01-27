@@ -33,18 +33,20 @@ android {
             dimension "environment"
             buildConfigField "String", "SERVER_URL", '"https://api.themoviedb.org/3/"'
             buildConfigField "String", "IMAGE_BASE_URL", '"http://image.tmdb.org/t/p/"'
+            buildConfigField "String", "API_KEY", '"b58ec89735cb99115f50c4035aa41c46"'
         }
         mock {
             dimension "environment"
             buildConfigField "String", "SERVER_URL", '"shouldntuse"'
             buildConfigField "String", "IMAGE_BASE_URL", '"http://image.tmdb.org/t/p/"'
+            buildConfigField "String", "API_KEY", '"b58ec89735cb99115f50c4035aa41c46"'
         }
     }
 
 }
 
 dependencies {
-    implementation project (':domain')
+    implementation project(':domain')
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$rootProject.ext.kotlinVersion"

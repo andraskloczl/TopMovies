@@ -19,6 +19,7 @@ import kotlinx.android.synthetic.main.toolbar.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
+
 class HomeActivity : AbstractActivity(), HomeContract.View {
 
 	override val layoutResourceId: Int
@@ -29,6 +30,7 @@ class HomeActivity : AbstractActivity(), HomeContract.View {
 		const val SPAN_COUNT = 2
 		const val ORIENTATION_VERTICAL = 1
 		const val SCROLL_STATE_SAMPLE_INTERVAL_MILLIS = 500L
+		const val PLACEHOLDER_VALUE = 0
 	}
 
 	@Inject
@@ -49,7 +51,8 @@ class HomeActivity : AbstractActivity(), HomeContract.View {
 
 	private fun initUI() {
 		setSupportActionBar(toolbar)
-		supportActionBar!!.title = getString(R.string.app_name)
+		toolbarTitle.setText(toolbar.getTitle())
+		supportActionBar?.setDisplayShowTitleEnabled(false)
 
 		layoutManager = StaggeredGridLayoutManager(SPAN_COUNT, ORIENTATION_VERTICAL)
 		recyclerView.layoutManager = layoutManager
@@ -58,16 +61,15 @@ class HomeActivity : AbstractActivity(), HomeContract.View {
 			presenter.onMovieClicked(clickedPost)
 		})
 		recyclerView.adapter = listAdapter
-		recyclerView.onScrollListener { rawScrollPublishSubject.onNext(0) }
+		recyclerView.onScrollListener { rawScrollPublishSubject.onNext(PLACEHOLDER_VALUE) }
 	}
 
 	override fun listenForScroll(): Observable<ScrollState> {
 		rawScrollPublishSubject
 			.sample(SCROLL_STATE_SAMPLE_INTERVAL_MILLIS, TimeUnit.MILLISECONDS)
 			.doOnError { Log.e(TAG, "listenForScroll", it) }
-			.onErrorReturn { 0 }
+			.onErrorReturn { PLACEHOLDER_VALUE }
 			.subscribe({
-				Log.d(TAG, "rawScrollPublishSubject")
 				val lastVisiblePositions = layoutManager.findLastVisibleItemPositions(IntArray(SPAN_COUNT))
 				val scrollState = ScrollState(lastVisiblePositions.lastOrNull() ?: 0, movies.size)
 				scrollStatePublishSubject.onNext(scrollState)
@@ -102,5 +104,6 @@ class HomeActivity : AbstractActivity(), HomeContract.View {
 
 	override fun goToDetailsScreen(movieToShow: DisplayedMovie) {
 		startActivity(DetailActivity.newIntent(this, movieToShow))
+		overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left)
 	}
 }

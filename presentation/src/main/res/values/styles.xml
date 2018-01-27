@@ -18,4 +18,36 @@
        <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="TextStyle" >
+       <item name="android:textColor">@color/textColorPrimary</item>
+    </style>
+
+    <style name="TextStyle.Small" >
+       <item name="android:textSize">@dimen/text_small</item>
+    </style>
+
+    <style name="TextStyle.Medium" >
+       <item name="android:textSize">@dimen/text_medium</item>
+    </style>
+
+    <style name="TextStyle.Medium.Inverse" >
+       <item name="android:textColor">@color/textColorPrimaryInverse</item>
+    </style>
+
+    <style name="TextStyle.Large" >
+       <item name="android:textSize">@dimen/text_large</item>
+    </style>
+
+    <style name="TextStyle.Large.Inverse" >
+        <item name="android:textColor">@color/textColorPrimaryInverse</item>
+    </style>
+
+    <style name="TextStyle.XLarge" >
+       <item name="android:textSize">@dimen/text_xlarge</item>
+    </style>
+
+    <style name="TextStyle.XLarge.Inverse" >
+        <item name="android:textColor">@color/textColorPrimaryInverse</item>
+    </style>
+
 </resources>

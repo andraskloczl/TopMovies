@@ -26,7 +26,7 @@
                 app:collapsedTitleTextAppearance="@style/DarkToolbarText"
                 app:contentScrim="@color/colorBackground"
                 app:expandedTitleMarginStart="@dimen/large"
-                app:expandedTitleTextAppearance="@style/LightToolbarText"
+                app:expandedTitleTextAppearance="@style/TextStyle.XLarge.Inverse"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 app:title="@string/app_name">
 
@@ -69,7 +69,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/medium"
+                android:layout_marginTop="@dimen/small"
                 android:orientation="vertical">
 
 
@@ -81,17 +81,16 @@
 
                     <TextView
                         android:id="@+id/movieRatingTextView"
-                        style="@style/TextAppearance.AppCompat.Large"
+                        style="@style/TextStyle.Large"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/large"
-                        android:textColor="@color/textColorPrimary"
+                        android:padding="@dimen/medium"
                         android:textStyle="bold"
                         tools:text="8.5" />
 
                     <ImageView
-                        android:layout_width="@dimen/movie_rating_star_size"
-                        android:layout_height="@dimen/movie_rating_star_size"
+                        android:layout_width="@dimen/movie_rating_star_size_big"
+                        android:layout_height="@dimen/movie_rating_star_size_big"
                         android:src="@drawable/star" />
 
                 </LinearLayout>
@@ -100,33 +99,36 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/small">
 
                     <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="@dimen/movie_detail_poster_image_height"
                         android:layout_weight="2"
-                        android:padding="@dimen/small">
+                        android:paddingEnd="@dimen/xxsmall"
+                        android:paddingStart="@dimen/xsmall">
 
 
                         <ImageView
                             android:id="@+id/moviePosterImageView"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_centerInParent="true"
-                            android:scaleType="fitCenter" />
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:scaleType="centerCrop" />
 
                     </RelativeLayout>
 
 
                     <TextView
                         android:id="@+id/movieOverViewTextView"
-                        style="@style/TextAppearance.AppCompat.Medium"
+                        style="@style/TextStyle.Medium"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="4"
-                        android:padding="@dimen/large"
-                        android:textColor="@color/textColorPrimary"
+                        android:paddingEnd="@dimen/medium"
+                        android:paddingStart="@dimen/small"
                         tools:text="When straight arrow FBI agent Roy Clayton heads up the investigation into a dangerous international conspiracy, all clues seem to lead back to former U.S. Special Operations officer, Samir Horn." />
 
 

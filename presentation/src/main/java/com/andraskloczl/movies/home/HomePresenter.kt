@@ -45,9 +45,11 @@ class HomePresenter(
 	private fun loadMovies() {
 		if (loadMovieDisposable.size() > 0 || hasItemsToLoad.not()) return
 
+		Log.d(TAG, "loadMovies")
 		loadMovieDisposable.add(getTopRatedMovies.execute(GetTopRatedMoviesRequest(++currentPage))
 			.observeOn(AndroidSchedulers.mainThread())
 			.subscribe({ movieDataPage ->
+				Log.d(TAG, "loadMovies - done")
 				onMoviesLoaded(movieDataPage)
 			}, { error ->
 				currentPage--

@@ -15,6 +15,11 @@ class MovieDetailsFragment : Fragment() {
 
 	companion object {
 		const val MOVIE_KEY = "movie"
+
+		fun newInstance(movie: DisplayedMovie): MovieDetailsFragment {
+			val bundle = Bundle().apply { putParcelable(MovieDetailsFragment.MOVIE_KEY, movie) }
+			return MovieDetailsFragment().apply { arguments = bundle }
+		}
 	}
 
 	lateinit var movie: DisplayedMovie

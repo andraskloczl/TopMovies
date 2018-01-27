@@ -1,9 +1,9 @@
 package com.andraskloczl.movies.detail
 
-import com.andraskloczl.movies.PopularityRankCalculator
 import com.andraskloczl.movies.domain.mapper.MovieMapper
 import com.andraskloczl.movies.domain.repository.SimilarMoviesRepository
 import com.andraskloczl.movies.domain.usecases.getsimilarmovies.GetSimilarMoviesImpl
+import com.andraskloczl.movies.domain.utils.PopularityRankCalculator
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

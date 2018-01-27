@@ -7,7 +7,6 @@ import com.andraskloczl.movies.domain.models.GetSimilarMoviesRequest
 import com.andraskloczl.movies.domain.usecases.getsimilarmovies.GetSimilarMovies
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import java.util.concurrent.TimeUnit
 
 class DetailPresenter(
 	val view: DetailContract.View,

@@ -6,5 +6,5 @@ import com.andraskloczl.movies.domain.models.Movie
 import io.reactivex.Observable
 
 interface SimilarMoviesDataSource {
-	fun getSimilarMovies(request: GetSimilarMoviesRequest) : Observable<DataPage<Movie>>
+	fun getSimilarMovies(request: GetSimilarMoviesRequest): Observable<DataPage<Movie>>
 }

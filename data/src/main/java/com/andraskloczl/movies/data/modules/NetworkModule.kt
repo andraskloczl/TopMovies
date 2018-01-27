@@ -1,14 +1,16 @@
 package com.andraskloczl.movies.data.modules
 
 import com.andraskloczl.movies.data.BuildConfig
-import com.andraskloczl.movies.data.MovieApi
-import com.andraskloczl.movies.data.RequestParamsProvider
 import com.andraskloczl.movies.data.image.ImageUrlProvider
 import com.andraskloczl.movies.data.image.ImageUrlProviderImpl
+import com.andraskloczl.movies.data.language.LanguageCodeProvider
+import com.andraskloczl.movies.data.language.LanguageCodeProviderImpl
+import com.andraskloczl.movies.data.network.MovieApi
+import com.andraskloczl.movies.data.network.RequestParamsProvider
+import com.andraskloczl.movies.data.network.RequestParamsProviderImpl
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
-import io.reactivex.Single
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -42,13 +44,10 @@ class NetworkModule {
 
 	@Provides
 	@Singleton
-	fun provideParamProvider(): RequestParamsProvider = object : RequestParamsProvider {
-		override fun provideParams(): Single<MutableMap<String, String>> = Single.fromCallable {
-			val paramsMap = mutableMapOf<String, String>()
-			paramsMap.put("api_key", "b58ec89735cb99115f50c4035aa41c46")
-			paramsMap.put("language", "en-us")
-			paramsMap
-		}
-	}
+	fun provideParamProvider(paramProvider: RequestParamsProviderImpl): RequestParamsProvider = paramProvider
+
+	@Provides
+	@Singleton
+	fun provideLanguageCodeProvider(languageCodeProvider: LanguageCodeProviderImpl): LanguageCodeProvider = languageCodeProvider
 
 }

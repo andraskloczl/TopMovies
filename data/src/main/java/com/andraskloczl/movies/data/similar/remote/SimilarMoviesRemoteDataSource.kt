@@ -1,9 +1,9 @@
 package com.andraskloczl.movies.data.similar.remote
 
 import com.andraskloczl.movies.data.Keys
-import com.andraskloczl.movies.data.MovieApi
-import com.andraskloczl.movies.data.RequestParamsProvider
 import com.andraskloczl.movies.data.mapper.MovieDataMapper
+import com.andraskloczl.movies.data.network.MovieApi
+import com.andraskloczl.movies.data.network.RequestParamsProvider
 import com.andraskloczl.movies.data.similar.SimilarMoviesDataSource
 import com.andraskloczl.movies.domain.models.DataPage
 import com.andraskloczl.movies.domain.models.GetSimilarMoviesRequest
@@ -19,12 +19,12 @@ class SimilarMoviesRemoteDataSource @Inject constructor(
 
 ) : SimilarMoviesDataSource {
 
-	override fun getSimilarMovies(request: GetSimilarMoviesRequest): Observable<DataPage<Movie>> =
-		paramsProvider.provideParams().flatMap { params ->
-			params.put(Keys.Remote.PAGE, request.page.toString())
-			movieApi.getSimilarMovies(request.movieId, params)
-		}
+	override fun getSimilarMovies(request: GetSimilarMoviesRequest): Observable<DataPage<Movie>> {
+		val params = paramsProvider.provideParams()
+			.apply { put(Keys.Remote.PAGE, request.page.toString()) }
+		return movieApi.getSimilarMovies(request.movieId, params)
 			.toObservable()
 			.map { dataMapper.transform(it) }
 			.subscribeOn(Schedulers.io())
+	}
 }

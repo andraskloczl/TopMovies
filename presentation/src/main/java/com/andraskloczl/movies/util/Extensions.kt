@@ -1,5 +1,6 @@
 package com.andraskloczl.movies.util
 
+import android.support.v4.view.ViewPager
 import android.support.v7.widget.RecyclerView
 
 object Extensions {
@@ -15,5 +16,23 @@ object Extensions {
 		}
 		listener.callback = callback
 		addOnScrollListener(listener)
+	}
+
+	fun ViewPager.onPageChangeListener(callback: (position: Int) -> Unit) {
+		val listener = object : ViewPager.OnPageChangeListener {
+			lateinit var callback: (position: Int) -> Unit
+
+			override fun onPageSelected(position: Int) {
+				callback.invoke(position)
+			}
+
+			override fun onPageScrollStateChanged(state: Int) {
+			}
+
+			override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+			}
+		}
+		listener.callback = callback
+		addOnPageChangeListener(listener)
 	}
 }

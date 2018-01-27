@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="xxsmall">3dp</dimen>
+    <dimen name="xsmall">5dp</dimen>
+    <dimen name="small">7dp</dimen>
+    <dimen name="medium">10dp</dimen>
+    <dimen name="large">14dp</dimen>
+    <dimen name="xlarge">20dp</dimen>
+
+    <dimen name="text_small">14sp</dimen>
+    <dimen name="text_medium">16sp</dimen>
+    <dimen name="text_large">18sp</dimen>
+    <dimen name="text_xlarge">20sp</dimen>
+
+    <dimen name="loading_animation_size">120dp</dimen>
+
+    <dimen name="height_movie_detail_image">250dp</dimen>
+
+    <dimen name="movie_detail_poster_image_height">200dp</dimen>
+
+    <dimen name="movie_list_item_image_height_small">300dp</dimen>
+    <dimen name="movie_list_item_image_height_medium">375dp</dimen>
+    <dimen name="movie_list_item_image_height_large">450dp</dimen>
+
+</resources>
