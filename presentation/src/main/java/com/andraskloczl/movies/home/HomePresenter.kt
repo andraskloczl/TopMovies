@@ -1,6 +1,5 @@
 package com.andraskloczl.movies.home
 
-import android.util.Log
 import com.andraskloczl.movies.domain.models.DataPage
 import com.andraskloczl.movies.domain.models.DisplayedMovie
 import com.andraskloczl.movies.domain.models.GetTopRatedMoviesRequest
@@ -14,7 +13,6 @@ class HomePresenter(
 ) : HomeContract.Presenter {
 
 	companion object {
-		val TAG = HomePresenter::class.java.simpleName
 		const val REMAINING_ITEMS_COUNT_THRESHOLD_BEFORE_LOAD = 10
 	}
 
@@ -45,16 +43,13 @@ class HomePresenter(
 	private fun loadMovies() {
 		if (loadMovieDisposable.size() > 0 || hasItemsToLoad.not()) return
 
-		Log.d(TAG, "loadMovies")
 		loadMovieDisposable.add(getTopRatedMovies.execute(GetTopRatedMoviesRequest(++currentPage))
 			.observeOn(AndroidSchedulers.mainThread())
 			.subscribe({ movieDataPage ->
-				Log.d(TAG, "loadMovies - done")
 				onMoviesLoaded(movieDataPage)
 			}, { error ->
 				currentPage--
 				loadMovieDisposable.clear()
-				Log.e(TAG, "loadMovies", error)
 				view.displayError("")
 			}))
 	}

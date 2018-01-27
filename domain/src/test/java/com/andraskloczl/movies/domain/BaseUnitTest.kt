@@ -11,7 +11,7 @@ open class BaseUnitTest {
 
 	protected fun <T> same(value: T): T {
 		Mockito.same<T>(value)
-		return uninitialized<T>()
+		return uninitialized()
 	}
 
 	private fun <T> uninitialized(): T = null as T

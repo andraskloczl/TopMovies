@@ -1,6 +1,5 @@
 package com.andraskloczl.movies.detail
 
-import android.util.Log
 import com.andraskloczl.movies.domain.models.DataPage
 import com.andraskloczl.movies.domain.models.DisplayedMovie
 import com.andraskloczl.movies.domain.models.GetSimilarMoviesRequest
@@ -14,7 +13,6 @@ class DetailPresenter(
 ) : DetailContract.Presenter {
 
 	companion object {
-		val TAG = DetailPresenter::class.java.simpleName
 		const val REMAINING_ITEMS_COUNT_THRESHOLD_BEFORE_LOAD = 5
 	}
 
@@ -48,7 +46,6 @@ class DetailPresenter(
 			}, { error ->
 				currentPage--
 				compositeDisposable.clear()
-				Log.e(TAG, "loadMovies", error)
 				view.displayError("")
 			}))
 	}
