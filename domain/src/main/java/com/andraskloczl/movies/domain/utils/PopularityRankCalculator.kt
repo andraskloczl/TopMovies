@@ -5,12 +5,12 @@ import com.andraskloczl.movies.domain.models.Movie
 class PopularityRankCalculator {
 
 	companion object {
-		const val MAX_RANK = 10;
-		const val MIN_RANK = 1;
+		const val MAX_RANK = 10
+		const val MIN_RANK = 0
 	}
 
-	var minPopularity: Float = 0f
-	var popularityPerRank: Float = 0f
+	private var minPopularity: Float = 0f
+	private var popularityPerRank: Float = 0f
 
 	fun init(movies: List<Movie>) {
 		val popularities = movies.map { it.popularity }
@@ -21,6 +21,13 @@ class PopularityRankCalculator {
 
 	fun calculate(movie: Movie): Int {
 		val pointsFromMin = movie.popularity - minPopularity
-		return (pointsFromMin / popularityPerRank).toInt()
+		val calculatedValue = (pointsFromMin / popularityPerRank).toInt()
+		return if (calculatedValue > MAX_RANK) {
+			MAX_RANK
+		} else if (calculatedValue < MIN_RANK) {
+			MIN_RANK
+		} else {
+			calculatedValue
+		}
 	}
 }
