@@ -51,7 +51,7 @@ class HomeActivity : AbstractActivity(), HomeContract.View {
 
 	private fun initUI() {
 		setSupportActionBar(toolbar)
-		toolbarTitle.setText(toolbar.getTitle())
+		toolbarTitle.text = toolbar.title
 		supportActionBar?.setDisplayShowTitleEnabled(false)
 
 		layoutManager = StaggeredGridLayoutManager(SPAN_COUNT, ORIENTATION_VERTICAL)

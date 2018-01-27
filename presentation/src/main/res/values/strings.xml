@@ -3,4 +3,7 @@
     <string name="default_error_message">An error occurred</string>
     <string name="movie_rating">%1$.1f/10</string>
 
+    <string name="cd_movie_backdrop_image">Movie backdrop image</string>
+    <string name="cd_movie_poster_image">Movie poster image</string>
+
 </resources>

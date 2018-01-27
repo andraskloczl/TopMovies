@@ -25,7 +25,7 @@ class HomePresenter(
 	private var hasItemsToLoad = true
 
 	override fun subscribe() {
-		if(currentPage == 0) {
+		if (currentPage == 0) {
 			loadMovies()
 		}
 		scrollDisposable.add(view.listenForScroll()

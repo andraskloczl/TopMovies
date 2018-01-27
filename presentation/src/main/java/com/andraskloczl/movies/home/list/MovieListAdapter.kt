@@ -33,7 +33,7 @@ class MovieListAdapter(
 
 		val movie = movies.get(position)
 
-		val layoutParams = holder.itemView.getLayoutParams() as StaggeredGridLayoutManager.LayoutParams
+		val layoutParams = holder.itemView.layoutParams as StaggeredGridLayoutManager.LayoutParams
 
 		val heightDimen = when (movie.popularityRank) {
 			in 8..10 -> R.dimen.movie_list_item_image_height_large
