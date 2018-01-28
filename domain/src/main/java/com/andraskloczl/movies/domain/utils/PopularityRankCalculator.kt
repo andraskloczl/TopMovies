@@ -22,12 +22,10 @@ class PopularityRankCalculator {
 	fun calculate(movie: Movie): Int {
 		val pointsFromMin = movie.popularity - minPopularity
 		val calculatedValue = (pointsFromMin / popularityPerRank).toInt()
-		return if (calculatedValue > MAX_RANK) {
-			MAX_RANK
-		} else if (calculatedValue < MIN_RANK) {
-			MIN_RANK
-		} else {
-			calculatedValue
+		return when {
+			calculatedValue > MAX_RANK -> MAX_RANK
+			calculatedValue < MIN_RANK -> MIN_RANK
+			else -> calculatedValue
 		}
 	}
 }

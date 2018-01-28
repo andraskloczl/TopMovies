@@ -10,6 +10,7 @@
         android:id="@+id/movieImageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:contentDescription="@string/cd_movie_poster_image"
         android:scaleType="centerCrop" />
 
 
@@ -20,8 +21,8 @@
         android:background="@drawable/movie_title_background"
         android:orientation="vertical"
         android:paddingBottom="@dimen/medium"
-        android:paddingStart="@dimen/medium"
         android:paddingEnd="@dimen/medium"
+        android:paddingStart="@dimen/medium"
         android:paddingTop="@dimen/movie_text_background_padding_top">
 
 
@@ -42,6 +43,7 @@
             <ImageView
                 android:layout_width="@dimen/movie_rating_star_size_small"
                 android:layout_height="@dimen/movie_rating_star_size_small"
+                android:contentDescription="@null"
                 android:src="@drawable/star" />
 
             <TextView

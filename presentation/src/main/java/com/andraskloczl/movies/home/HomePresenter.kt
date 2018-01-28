@@ -1,6 +1,5 @@
 package com.andraskloczl.movies.home
 
-import android.util.Log
 import com.andraskloczl.movies.domain.models.DataPage
 import com.andraskloczl.movies.domain.models.DisplayedMovie
 import com.andraskloczl.movies.domain.models.GetTopRatedMoviesRequest
@@ -10,22 +9,21 @@ import io.reactivex.disposables.CompositeDisposable
 
 class HomePresenter(
 	val view: HomeContract.View,
-	val getTopRatedMovies: GetTopRatedMovies
+	private val getTopRatedMovies: GetTopRatedMovies
 ) : HomeContract.Presenter {
 
 	companion object {
-		val TAG = HomePresenter::class.java.simpleName
 		const val REMAINING_ITEMS_COUNT_THRESHOLD_BEFORE_LOAD = 10
 	}
 
-	val loadMovieDisposable = CompositeDisposable()
-	val scrollDisposable = CompositeDisposable()
+	private val loadMovieDisposable = CompositeDisposable()
+	private val scrollDisposable = CompositeDisposable()
 
 	private var currentPage = 0
 	private var hasItemsToLoad = true
 
 	override fun subscribe() {
-		if(currentPage == 0) {
+		if (currentPage == 0) {
 			loadMovies()
 		}
 		scrollDisposable.add(view.listenForScroll()
@@ -45,16 +43,13 @@ class HomePresenter(
 	private fun loadMovies() {
 		if (loadMovieDisposable.size() > 0 || hasItemsToLoad.not()) return
 
-		Log.d(TAG, "loadMovies")
 		loadMovieDisposable.add(getTopRatedMovies.execute(GetTopRatedMoviesRequest(++currentPage))
 			.observeOn(AndroidSchedulers.mainThread())
 			.subscribe({ movieDataPage ->
-				Log.d(TAG, "loadMovies - done")
 				onMoviesLoaded(movieDataPage)
 			}, { error ->
 				currentPage--
 				loadMovieDisposable.clear()
-				Log.e(TAG, "loadMovies", error)
 				view.displayError("")
 			}))
 	}

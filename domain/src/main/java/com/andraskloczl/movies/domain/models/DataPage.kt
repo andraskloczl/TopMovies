@@ -1,6 +1,6 @@
 package com.andraskloczl.movies.domain.models
 
-class DataPage<T>(
+class DataPage<out T>(
 	val pageIndex: Int,
 	val pageItems: List<T>
 )

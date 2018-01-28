@@ -9,9 +9,9 @@ import com.andraskloczl.movies.domain.utils.PopularityRankCalculator
 import io.reactivex.Observable
 
 class GetTopRatedMoviesImpl(
-	val topRatedMovieRepository: TopRatedMovieRepository,
-	val movieMapper: MovieMapper,
-	val popularityRankCalculator: PopularityRankCalculator
+	private val topRatedMovieRepository: TopRatedMovieRepository,
+	private val movieMapper: MovieMapper,
+	private val popularityRankCalculator: PopularityRankCalculator
 ) : GetTopRatedMovies {
 
 	override fun execute(data: GetTopRatedMoviesRequest): Observable<DataPage<DisplayedMovie>> =

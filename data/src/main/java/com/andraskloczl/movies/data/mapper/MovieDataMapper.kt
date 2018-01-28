@@ -9,7 +9,7 @@ import javax.inject.Singleton
 
 @Singleton
 class MovieDataMapper @Inject constructor(
-	val imageUrlProvider: ImageUrlProvider
+	private val imageUrlProvider: ImageUrlProvider
 ) {
 
 	fun transform(response: PaginatedMoviesResponse): DataPage<Movie> =
