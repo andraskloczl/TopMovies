@@ -1,8 +1,8 @@
 package com.andraskloczl.movies.domain.usecases.gettopratedmovies
 
 import android.support.test.filters.SmallTest
-import com.andraskloczl.movies.domain.BaseUnitTest
-import com.andraskloczl.movies.domain.TestDataGenerator
+import com.andraskloczl.movies.common.BaseUnitTest
+import com.andraskloczl.movies.domain.TestDomainModelGenerator
 import com.andraskloczl.movies.domain.mapper.MovieMapper
 import com.andraskloczl.movies.domain.models.GetTopRatedMoviesRequest
 import com.andraskloczl.movies.domain.repository.TopRatedMovieRepository
@@ -41,7 +41,7 @@ class GetTopRatedMoviesImplTest : BaseUnitTest() {
 		val movieListSize = 3
 		val requestDummy = GetTopRatedMoviesRequest(pageIndex)
 
-		val testData = TestDataGenerator.getMoviesDataPage(pageIndex, movieListSize)
+		val testData = TestDomainModelGenerator.getMoviesDataPage(pageIndex, movieListSize)
 
 		Mockito.`when`(mockTopRatedMovieRepository.getTopRatedMovies(any()))
 			.thenReturn(Observable.just(testData))

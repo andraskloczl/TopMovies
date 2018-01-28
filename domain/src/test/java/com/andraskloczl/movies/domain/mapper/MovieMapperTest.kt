@@ -1,11 +1,11 @@
 package com.andraskloczl.movies.domain.mapper
 
 import android.support.test.filters.SmallTest
-import com.andraskloczl.movies.domain.BaseUnitTest
-import com.andraskloczl.movies.domain.TestDataGenerator.getMovie
+import com.andraskloczl.movies.common.BaseUnitTest
+import com.andraskloczl.movies.domain.TestDomainModelGenerator.getMovie
 import com.andraskloczl.movies.domain.models.Movie
 import com.andraskloczl.movies.domain.utils.PopularityRankCalculator
-import junit.framework.Assert.assertEquals
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock

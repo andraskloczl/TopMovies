@@ -1,4 +1,4 @@
-package com.andraskloczl.movies.data
+package com.andraskloczl.movies.common
 
 import org.mockito.Mockito
 

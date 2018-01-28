@@ -1,8 +1,8 @@
 package com.andraskloczl.movies.domain.usecases.getsimilarmovies
 
 import android.support.test.filters.SmallTest
-import com.andraskloczl.movies.domain.BaseUnitTest
-import com.andraskloczl.movies.domain.TestDataGenerator
+import com.andraskloczl.movies.common.BaseUnitTest
+import com.andraskloczl.movies.domain.TestDomainModelGenerator
 import com.andraskloczl.movies.domain.mapper.MovieMapper
 import com.andraskloczl.movies.domain.models.GetSimilarMoviesRequest
 import com.andraskloczl.movies.domain.repository.SimilarMoviesRepository
@@ -41,7 +41,7 @@ class GetSimilarMoviesImplTest : BaseUnitTest() {
 		val movieListSize = 3
 		val requestDummy = GetSimilarMoviesRequest("", pageIndex)
 
-		val testData = TestDataGenerator.getMoviesDataPage(pageIndex, movieListSize)
+		val testData = TestDomainModelGenerator.getMoviesDataPage(pageIndex, movieListSize)
 
 		Mockito.`when`(mockSimilarMoviesRepository.getSimilarMovies(any()))
 			.thenReturn(Observable.just(testData))

@@ -4,7 +4,7 @@ import com.andraskloczl.movies.data.models.MovieAPIModel
 import com.andraskloczl.movies.domain.models.DataPage
 import com.andraskloczl.movies.domain.models.Movie
 
-object TestDataGenerator {
+object TestDataModelGenerator {
 
 	fun getMovieApiModelsList(size: Int): List<MovieAPIModel> {
 		val movies = mutableListOf<MovieAPIModel>()

@@ -43,9 +43,19 @@ android {
         }
     }
 
+    sourceSets {
+        androidTest {
+            java.srcDirs = ['../common/src/androidTest/java', 'src/androidTest/java']
+        }
+        test {
+            java.srcDirs = ['../common/src/test/java', 'src/test/java']
+        }
+    }
+
 }
 
 dependencies {
+    implementation project(':common')
     implementation project(':domain')
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -73,4 +83,7 @@ dependencies {
     testImplementation "junit:junit:$rootProject.ext.junitVersion"
     testImplementation "org.mockito:mockito-core:$rootProject.ext.mockitoVersion"
     testImplementation "com.android.support.test:runner:$rootProject.ext.androidSupportTestRunnerVersion"
+
+    androidTestImplementation "com.android.support.test:runner:$rootProject.ext.androidSupportTestRunnerVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.ext.espressoVersion"
 }

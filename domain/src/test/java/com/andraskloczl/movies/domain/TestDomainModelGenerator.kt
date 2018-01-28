@@ -3,7 +3,7 @@ package com.andraskloczl.movies.domain
 import com.andraskloczl.movies.domain.models.DataPage
 import com.andraskloczl.movies.domain.models.Movie
 
-object TestDataGenerator {
+object TestDomainModelGenerator {
 
 	fun getMoviesDataPage(page: Int, size: Int): DataPage<Movie> {
 
