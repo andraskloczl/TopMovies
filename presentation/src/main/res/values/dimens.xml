@@ -3,10 +3,6 @@
 
     <dimen name="movie_text_background_padding_top">100dp</dimen>
 
-    <dimen name="toolbar_height">60dp</dimen>
-
-    <dimen name="toolbar_text_size">16sp</dimen>
-
     <dimen name="movie_details_title_background_height">120dp</dimen>
 
     <dimen name="movie_rating_star_size_big">30dp</dimen>
