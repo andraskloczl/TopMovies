@@ -1,14 +1,14 @@
 package com.andraskloczl.movies.domain.utils
 
 import android.support.test.filters.SmallTest
-import com.andraskloczl.movies.domain.TestDataGenerator.getMovie
-import junit.framework.Assert.assertEquals
+import com.andraskloczl.movies.common.BaseUnitTest
+import com.andraskloczl.movies.domain.TestDomainModelGenerator.getMovie
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 
 @SmallTest
-class PopularityRankCalculatorTest {
-
+class PopularityRankCalculatorTest : BaseUnitTest() {
 
 	private val calculator = PopularityRankCalculator()
 

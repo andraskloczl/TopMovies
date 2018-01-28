@@ -1,9 +1,9 @@
 package com.andraskloczl.movies.data.toprated.remote
 
 import android.support.test.filters.SmallTest
-import com.andraskloczl.movies.data.BaseUnitTest
+import com.andraskloczl.movies.common.BaseUnitTest
 import com.andraskloczl.movies.data.Keys
-import com.andraskloczl.movies.data.TestDataGenerator
+import com.andraskloczl.movies.data.TestDataModelGenerator
 import com.andraskloczl.movies.data.mapper.MovieDataMapper
 import com.andraskloczl.movies.data.models.PaginatedMoviesResponse
 import com.andraskloczl.movies.data.network.MovieApi
@@ -12,7 +12,7 @@ import com.andraskloczl.movies.domain.models.GetTopRatedMoviesRequest
 import io.reactivex.Single
 import io.reactivex.plugins.RxJavaPlugins
 import io.reactivex.schedulers.Schedulers
-import junit.framework.Assert.assertEquals
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
@@ -34,7 +34,7 @@ class TopRatedMovieRemoteDataSourceTest : BaseUnitTest() {
 	@Before
 	fun setup() {
 		MockitoAnnotations.initMocks(this)
-		RxJavaPlugins.setIoSchedulerHandler { schedulerCallable -> Schedulers.trampoline() }
+		RxJavaPlugins.setIoSchedulerHandler { Schedulers.trampoline() }
 		topRatedMovieRemoteDataSource =
 			TopRatedMovieRemoteDataSource(movieApi, requestParamsProvider, dataMapper)
 	}
@@ -47,11 +47,11 @@ class TopRatedMovieRemoteDataSourceTest : BaseUnitTest() {
 		val testPage = 1
 
 		val testApiResponse = PaginatedMoviesResponse(testPage, 100, 10,
-			com.andraskloczl.movies.data.TestDataGenerator.getMovieApiModelsList(10)
+			TestDataModelGenerator.getMovieApiModelsList(10)
 		)
 		`when`(movieApi.getTopRatedMovies(any())).thenReturn(Single.just(testApiResponse))
 
-		val testMappedObject = TestDataGenerator.getMoviesDataPage(testPage, 10)
+		val testMappedObject = TestDataModelGenerator.getMoviesDataPage(testPage, 10)
 		`when`(dataMapper.transform(any())).thenReturn(testMappedObject)
 
 		val request = GetTopRatedMoviesRequest(testPage)
