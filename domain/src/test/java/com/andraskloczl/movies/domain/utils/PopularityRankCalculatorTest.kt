@@ -10,12 +10,7 @@ import org.junit.Test
 class PopularityRankCalculatorTest {
 
 
-	private lateinit var calculator: PopularityRankCalculator
-
-	@Before
-	fun setup() {
-		calculator = PopularityRankCalculator()
-	}
+	private val calculator = PopularityRankCalculator()
 
 	@Test
 	fun `When initialized with normal values Then it should calculate proper values`() {
