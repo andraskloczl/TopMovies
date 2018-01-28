@@ -9,9 +9,9 @@ import com.andraskloczl.movies.domain.utils.PopularityRankCalculator
 import io.reactivex.Observable
 
 class GetSimilarMoviesImpl(
-	val similarMoviesRepository: SimilarMoviesRepository,
-	val movieMapper: MovieMapper,
-	val popularityRankCalculator: PopularityRankCalculator
+	private val similarMoviesRepository: SimilarMoviesRepository,
+	private val movieMapper: MovieMapper,
+	private val popularityRankCalculator: PopularityRankCalculator
 ) : GetSimilarMovies {
 
 	override fun execute(data: GetSimilarMoviesRequest): Observable<DataPage<DisplayedMovie>> =

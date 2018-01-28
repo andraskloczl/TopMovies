@@ -10,7 +10,7 @@ import org.junit.Test
 class PopularityRankCalculatorTest {
 
 
-	lateinit var calculator: PopularityRankCalculator
+	private lateinit var calculator: PopularityRankCalculator
 
 	@Before
 	fun setup() {

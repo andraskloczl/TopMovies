@@ -1,6 +1,5 @@
 package com.andraskloczl.movies.detail
 
-import android.util.Log
 import com.andraskloczl.movies.domain.models.DataPage
 import com.andraskloczl.movies.domain.models.DisplayedMovie
 import com.andraskloczl.movies.domain.models.GetSimilarMoviesRequest
@@ -10,20 +9,19 @@ import io.reactivex.disposables.CompositeDisposable
 
 class DetailPresenter(
 	val view: DetailContract.View,
-	val getSimilarMovies: GetSimilarMovies
+	private val getSimilarMovies: GetSimilarMovies
 ) : DetailContract.Presenter {
 
 	companion object {
-		val TAG = DetailPresenter::class.java.simpleName
 		const val REMAINING_ITEMS_COUNT_THRESHOLD_BEFORE_LOAD = 5
 	}
 
-	lateinit var movie: DisplayedMovie
+	private lateinit var movie: DisplayedMovie
 
 	private var currentPage = 0
 	private var hasItemsToLoad = true
 
-	val compositeDisposable = CompositeDisposable()
+	private val compositeDisposable = CompositeDisposable()
 
 	override fun setSelectedMovie(movie: DisplayedMovie) {
 		this.movie = movie
@@ -48,7 +46,6 @@ class DetailPresenter(
 			}, { error ->
 				currentPage--
 				compositeDisposable.clear()
-				Log.e(TAG, "loadMovies", error)
 				view.displayError("")
 			}))
 	}

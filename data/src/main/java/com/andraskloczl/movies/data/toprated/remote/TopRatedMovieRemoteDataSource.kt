@@ -13,9 +13,9 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class TopRatedMovieRemoteDataSource @Inject constructor(
-	val movieApi: MovieApi,
-	val paramsProvider: RequestParamsProvider,
-	val dataMapper: MovieDataMapper
+	private val movieApi: MovieApi,
+	private val paramsProvider: RequestParamsProvider,
+	private val dataMapper: MovieDataMapper
 
 ) : TopRatedMovieDataSource {
 

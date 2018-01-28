@@ -19,13 +19,14 @@ import org.mockito.Spy
 class GetTopRatedMoviesImplTest : BaseUnitTest() {
 
 	@Mock
+	private
 	lateinit var mockTopRatedMovieRepository: TopRatedMovieRepository
 	@Spy
-	var movieMapper = MovieMapper()
+	private var movieMapper = MovieMapper()
 	@Spy
-	var popularityRankCalculator = PopularityRankCalculator()
+	private var popularityRankCalculator = PopularityRankCalculator()
 
-	lateinit var getTopRatedMoviesImpl: GetTopRatedMoviesImpl
+	private lateinit var getTopRatedMoviesImpl: GetTopRatedMoviesImpl
 
 	@Before
 	fun setup() {

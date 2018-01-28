@@ -22,7 +22,7 @@ class MovieDetailsFragment : Fragment() {
 		}
 	}
 
-	lateinit var movie: DisplayedMovie
+	private lateinit var movie: DisplayedMovie
 
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 		val view = inflater.inflate(R.layout.fragment_movie_details, container, false) as ViewGroup

@@ -11,7 +11,7 @@ class SimilarMoviesPagerAdapter(
 ) : FragmentStatePagerAdapter(fragmentManager) {
 
 	override fun getItem(position: Int): Fragment {
-		val movie = movies.get(position)
+		val movie = movies[position]
 		return MovieDetailsFragment.newInstance(movie)
 	}
 

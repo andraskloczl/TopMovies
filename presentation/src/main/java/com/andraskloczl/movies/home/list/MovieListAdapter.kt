@@ -31,7 +31,7 @@ class MovieListAdapter(
 	override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
 		if (holder == null) return
 
-		val movie = movies.get(position)
+		val movie = movies[position]
 
 		val layoutParams = holder.itemView.layoutParams as StaggeredGridLayoutManager.LayoutParams
 
